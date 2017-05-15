@@ -11,4 +11,4 @@ MCUNODE连接此服务端的8001
 
 ### NODEMCU使用https://github.com/IoTServ/McuNode 连接此服务端，需要更改www.mcunode.com 到你的ip
 
-树莓派请使用LinuxArm和两个文件夹
+树莓派请使用LinuxArm和两个文件夹 或者你使用单文件的版本
