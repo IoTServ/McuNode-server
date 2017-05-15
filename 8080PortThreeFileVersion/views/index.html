@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<title>McuNode物联网云服务</title>
+<meta name="keywords" content="mcunode，nodemcu物联网云服务，云串口，Lua物联网，nodemcu在线控制，Lua在线开发"/>
+<meta name="description" content="本网提供mcunode，物联网云服务，云串口，Lua物联网，nodemcu在线控制，lua在线开发，nodemcu在线编译"/>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/common.css">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">McuNode</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" id="word" placeholder="You id setting here">
+            </div>
+            <button type="submit" class="btn btn-success" onclick="go()">连接（Link your device）</button>
+            <button type="submit" class="btn btn-success" onclick="goweb()">web穿透（Go to Proxy web）</button>
+        </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://nodemcu.readthedocs.io/en/master/">nodemcu API</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br><br><br>
+<div class="row clearfix">
+<div class="col-md-3 column"></div>
+<div class="col-md-6 column">
+    <h3>使用McuNode Terminal连接NodeMcu，在线控制和开发：</h3>
+<h5>项目地址：<a href="https://github.com/IoTServ/McuNode">https://github.com/IoTServ/McuNode</a></h5>
+<div>可以自己修改以下两个文件">Get code</a></div>
+<div>init.lua</div>
+<textarea class="code">
+dofile('cmd.lua')
+id="id" --you can set your id by youself!!!!!!
+function startServer()
+print(wifi.sta.getip())
+sk=net.createConnection(net.TCP, 0)
+sk:on("receive", function(sck, c) node.input(c) end )   --print(c)
+sk:on("connection", function(sck, c)
+print(c)
+sk:send(id)
+tmr.alarm(2, 30000, 1, function()
+	print(' ')
+end)
+function s_output(str)
+         if (sk~=nil and str~='')    then
+            sk:send(str)
+         end
+      end
+node.output(s_output,1)
+end )
+sk:on("disconnection",function(conn,c)
+         --node.output(nil)
+		 print('reconnect')
+		 sk:connect(8001,"你的私有化服务器ip")
+		 sk:send(id)
+      end)
+sk:connect(8001,"你的私有化服务器ip(内网或者外网ip)")
+end
+wifi.setmode(wifi.STATION)
+wifi.sta.config("ssid","password")    --set your ap info !!!!!!
+wifi.sta.autoconnect(1)
+tmr.alarm(1, 1000, 1, function()
+   if wifi.sta.getip()==nil then
+      print("Connect AP, Waiting...")
+   else
+      startServer()
+      tmr.stop(1)
+   end
+end)
+</textarea>
+<div>cmd.lua</div>
+<textarea class="code2">
+function ls()
+	local l = file.list()
+	for k,v in pairs(l) do
+		print("name:"..k..", size:"..v)
+	end
+end
+
+function cat(filename)
+	local line
+	file.open(filename, "r")
+	while 1 do
+		line = file.readline()
+		if line == nil then
+			break
+		end
+		line = string.gsub(line, "\n", "")
+		print(line)
+	end
+	file.close()
+end
+
+function getFile(p,f)
+  local strPost = "GET /"..p.."f="..f.." HTTP/1.0\r\nHost: "..'www.mcunode.com'.."\r\n\r\n"
+  local sk=net.createConnection(net.TCP, 0)
+  local s=0
+  file.remove(f)
+  file.open(f,"a")
+  sk:on("connection", function(sck) sk:send(strPost) end)
+  sk:on("receive", function(sck, res)
+     local pos=string.find(res,"%c%c%c")
+     if pos~=nil then
+          s=1
+          pos=pos+4
+     else
+        pos=0
+     end
+     if s==1 then
+          file.write(res:sub(pos))
+     end
+     res=nil
+     collectgarbage()
+  end)
+  sk:dns(host,function(conn,ip) sk:connect(80,ip) end)
+  tmr.alarm(5,2000,0,function() sk:close() sk=nil strPost = nil file.close() collectgarbage() end)
+end
+</textarea>
+<br><br>
+<h4>请输入id（init.lua中设置的id）：</h4>
+<input type="text" class="form-control" placeholder="id" id="word2" value="" style="width: 300px">
+<button type="submit" class="btn btn-success" onclick="go()">打开设备</button>
+</div>
+<div class="col-md-3 column">
+</div>
+</div>
+
+<footer class="footer">
+    <p class="footer-content">
+        @2016
+        <a href="/">McuNode物联网云服务</a>
+        -IoT Cloud Service
+    </p>
+</footer>
+<script>
+    function go() {
+        var word = $("#word").val() || $("#word2").val();
+        console.log(word);
+        if (word != '') {
+            location.href = "/term/" + word;
+        }
+    }
+    function goweb() {
+        var word = $("#word").val();
+        if (word != '') {
+            herf="/proxy/" + word + "/index.html";
+            console.log(herf);
+            location.href = herf;
+        }
+    }
+</script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>
