@@ -1,0 +1,25 @@
+.footer {
+	background: #474E5D;
+	padding: 15px 0 5px;
+	font-size: 13px;
+}
+.footer-content {
+    text-align: center;
+    color: #8a6d3b;
+}
+.footer-content a {
+    text-decoration: none;
+    color: #8a6d3b;
+}
+.code {
+    width: 600px;
+    height: 640px;
+}
+.code2 {
+    width: 600px;
+    height: 910px;
+}
+span {
+    font-size: large;
+    color: red;
+}
