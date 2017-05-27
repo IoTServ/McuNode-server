@@ -129,13 +129,14 @@ window.addEventListener('load', function() {
 
 function writeToMcu(){
             //var code=document.getElementById("code").value.split('\n');
+            var innerI = 0;
             var code  = editor.getValue().split('\n');
             lineleng=code.length;
             console.log(lineleng);
             filename=document.getElementById("filename").value||'fogot.lua';
-            websocket.send('file.remove(\''+filename+'\', \'w+\')');
+            websocket.send('file.remove(\''+filename+'\')');
+            sleep(300);
             websocket.send('file.open(\''+filename+'\', \'w+\')');
-            var innerI = 0;
             mytime = setInterval(function () { write() }, 200);
             function write() {
                 if(innerI<lineleng){
@@ -147,6 +148,10 @@ function writeToMcu(){
                 }
                 if (innerI == lineleng+1) {clearInterval(mytime);}
                 innerI++;
+            }
+            function sleep(milliSeconds){
+                var startTime = new Date().getTime();
+                while (new Date().getTime() < startTime + milliSeconds);
             }
 
         }
