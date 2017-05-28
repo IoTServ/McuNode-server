@@ -12,9 +12,8 @@ MCUNODE连接此服务端的8001
 
 #### NODEMCU推荐使用https://github.com/IoTServ/McuNode-Lib 连接，该库集成了两种功能在一起并存
 #####  当然你也可以使用分开的程序来定制自己的程序，https://github.com/IoTServ/McuNode 
-#### 连接此服务端，需要更改www.mcunode.com 到你的ip
 
-####树莓派请使用LinuxArm和两个文件夹 或者你使用单文件的版本
+####  树莓派请使用LinuxArm和两个文件夹 或者你使用单文件的版本
 
 ##McuNode简介：
 ###  总览：
@@ -80,4 +79,4 @@ mcunode.connect("<id>","<server-ip>","<ssid>","<wifi-password>")
 
 * 当然如果你觉得有些功能用不上或者库太大，你也可以从这里：https://github.com/IoTServ/McuNode-server/tree/master/NODEMCU%E7%94%A8Lua%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B找到一些有用的信息定制自己的代码
 
-###非常希望 有人能提供运行本服务端的实例给大家使用，如果有请与我联系，我将在这里提供相关信息
+### 非常希望 有人能提供运行本服务端的实例给大家使用，如果有请与我联系，我将在这里提供相关信息
