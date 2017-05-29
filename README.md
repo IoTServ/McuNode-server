@@ -25,7 +25,7 @@ MCUNODE连接此服务端的8001
 ![image](https://github.com/IoTServ/McuNode-server/blob/master/imgs/webProxy.png?raw=true)
 
 ###  使用方法：
-* 你可以使用我们提供的库（https://github.com/IoTServ/McuNode-Lib）通过简单的几行代码就可以体验大部分功能：
+* 你可以使用我们提供的库（https://github.com/IoTServ/McuNode-Lib
 ~~~Lua
 local mcunode = require "mcunode"
 mcunode.connect("<id>","<server-ip>","<ssid>","<wifi-password>")  --自定义ID和使用的服务器地址（域名或ip），然后就是连接的热点信息
@@ -77,6 +77,5 @@ mcunode.connect("<id>","<server-ip>","<ssid>","<wifi-password>")
 这个模板会被注册为/index.html的地址所使用，持续中先从URL中获取两个参数然后将两个参数又渲染到模板反馈给用户
 ####  而且以上两个程序已经同时支持了在线IDE的功能
 
-* 当然如果你觉得有些功能用不上或者库太大，你也可以从这里：https://github.com/IoTServ/McuNode-server/tree/master/NODEMCU%E7%94%A8Lua%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B找到一些有用的信息定制自己的代码
-
+* 当然如果你觉得有些功能用不上或者库太大，你也可以从这里：https://github.com/IoTServ/McuNode-server/tree/master/NODEMCU%E7%94%A8Lua%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B
 ### 非常希望 有人能提供运行本服务端的实例给大家使用，如果有请与我联系，我将在这里提供相关信息
