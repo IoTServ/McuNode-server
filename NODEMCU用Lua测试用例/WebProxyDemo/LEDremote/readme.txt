@@ -1,1 +1,3 @@
-需要配置init.lua最后一行的id，服务器ip或域名，wifi名与密码
+闇�瑕侀厤缃甶nit.lua鏈�鍚庝竴琛岀殑id锛屾湇鍔″櫒ip鎴栧煙鍚嶏紝wifi鍚嶄笌瀵嗙爜
+
+![image](https://github.com/IoTServ/McuNode-server/blob/master/imgs/ledRemote.png?raw=true)
