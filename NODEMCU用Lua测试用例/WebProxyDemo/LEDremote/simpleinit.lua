@@ -37,4 +37,4 @@ mcunode.handle("/index.html",function(req,res)
   end
   return res
 end)
-mcunode.connect("4567","eiot.club","wifi","123456abc")
+mcunode.connect("4567","eiot.club","wifi","123456abc")   --简单的界面控制LED gpio0，gpio2，原始版本
