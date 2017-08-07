@@ -21,7 +21,7 @@ mcunode.handle("/test",function(req,res)
 end)
 --url:http://mcunodeserver-ip/proxy/<your-id>/index.html?name=farry&work=student
 mcunode.handle("/index.html",function(req,res)
-  res.file = "indextpl.html"
+  res.file = "oldindextpl.html"
   local pin = req.getParam("pin")
   res.setAttribute("raw",pin)
   gpio.mode(0, gpio.OUTPUT)
