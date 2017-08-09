@@ -46,7 +46,7 @@ mcunode.handle("/index.html",function(req,res)
 		  end
 		gpio.write(p,0)  
 	  end
-  elseif (pin==nil)
+  elseif (pin==nil) then
 	res.file = "indextpl.html"
   end
   return res
