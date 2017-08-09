@@ -22,12 +22,12 @@ end)
 --url:http://mcunodeserver-ip/proxy/<your-id>/index.html?name=farry&work=student
 mcunode.handle("/index.html",function(req,res)
   local p
-  res.file = "indextpl.html"
   local pin = req.getParam("pin")
   for i=0 , 12 do
 	gpio.mode(i, gpio.OUTPUT)
   end
   if (pin~=nil) then
+	  res.body="ok"
 	  a,b=string.find(pin,'ON')
 	  if (a~=nil) then
 	  	  c,d=string.find(pin,'%d%d')
@@ -46,6 +46,8 @@ mcunode.handle("/index.html",function(req,res)
 		  end
 		gpio.write(p,0)  
 	  end
+  elseif (pin==nil)
+	res.file = "indextpl.html"
   end
   return res
 end)
