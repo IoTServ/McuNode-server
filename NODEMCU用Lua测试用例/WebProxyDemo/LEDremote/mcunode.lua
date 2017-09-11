@@ -184,15 +184,20 @@ function M.handle(path, func)
 end
 
 function M.connect( id , host , ssid , pwd )
+	station_cfg={}
+	station_cfg.ssid=ssid
+        station_cfg.pwd=pwd
+        station_cfg.save=false
+        station_cfg.auto=true
 	conn = net.createConnection(net.TCP, 0)
 	conn:on("connection", function(sk, c)
 					sk:send(id)
-					tmr.alarm(2, 10000, 1, function() sk:send('<h1></h1>') end)	
+					tmr.alarm(2, 100000, 1, function() sk:send('<h1></h1>') end)	
 				end)
 	conn:on('receive', receive)			
 	if (ssid~=nil)	then
-        wifi.setmode(wifi.STATION)
-		wifi.sta.config(ssid,tostring(pwd or ""))    --set your ap info !!!!!!
+       		wifi.setmode(wifi.STATION)
+		wifi.sta.config(station_cfg)    --set your ap info !!!!!!
 		wifi.sta.autoconnect(1)
 		tmr.alarm(1, 1000, 1, function() 
 			if wifi.sta.getip()==nil then
