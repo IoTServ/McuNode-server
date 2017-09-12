@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<title>McuNode Terminal-设备id:{{ .id }}</title>
+<meta name="keywords" content="mcunode，nodemcu物联网云服务，云串口，Lua物联网，nodemcu在线控制，Lua在线开发"/>
+<meta name="description" content="本网提供mcunode，物联网云服务，云串口，Lua物联网，nodemcu在线控制，lua在线开发，nodemcu在线编译"/>
+<link rel="stylesheet" href="/static/css/xterm.css" />
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/common.css">
+<link rel="stylesheet" href="/static/css/codemirror.css">
+<link rel="stylesheet" href="/static/css/neat.css">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">McuNode</a>
+    </div>
+  </div>
+</nav>
+<br><br><br>
+<h3>使用McuNode Terminal连接NodeMcu，在线控制和开发：</h3>
+<h5>项目地址：<a href="https://github.com/IoTServ/McuNode">https://github.com/IoTServ/McuNode</a></h5>
+<br>
+<div class="row clearfix">
+    <div class="col-md-6 column">
+
+        <div id="terminal"></div>
+        <h3>可用快捷命令（xx.lua代表一个lua文件）：</h3>
+        <span>ls ，</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>reboot ，</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>rm xxx.lua ，</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>cat xxx.lua ，</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>dofile xxx.lua</span>&nbsp;&nbsp;
+	</div>
+	<div class="col-md-6 column">
+        <div>
+            <textarea id="code" name="code">print('wwww.McuNode.com')</textarea><br>Filename:
+            <input type="text" class="form-control" placeholder="filename eg:www/index.html or test.lua" id="filename" value="" style="width: 300px"><br>
+            <button type="submit" class="btn btn-success" onclick="writeToMcu()">download</button>
+        </div>
+	</div>
+</div>
+<footer class="footer">
+    <p class="footer-content">
+        @2016
+        <a href="/">McuNode物联网云服务</a>
+        -IoT Cloud Service <a href="http://www.miibeian.gov.cn/">皖ICP备17005382号-1</a>
+    </p>
+</footer>
+<script src="/static/js/xterm.js"></script>
+<script>var id='{{ .id }}';</script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/mcunode.js"></script>
+<script src="/static/js/codemirror.js"></script>
+<script src="/static/js/matchbrackets.js"></script>
+<script src="/static/js/lua.min.js"></script>
+<script>var editor = CodeMirror.fromTextArea(document.getElementById("code"), {matchBrackets: true,theme: "neat"});</script>
+</body>
+</html>
