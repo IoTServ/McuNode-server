@@ -31,7 +31,7 @@ func (c *ProxyController) Get() {
 	}else {
 		c.Ctx.Output.Header("Content-Type", "text/html; charset=utf-8")
 	}
-	time.Sleep(time.Millisecond*250)
+	time.Sleep(time.Millisecond*650)
 	if v, ok := httpmsg[id]; ok {
 		msg=v
 		delete(httpmsg,id)
@@ -39,7 +39,7 @@ func (c *ProxyController) Get() {
 		c.Ctx.WriteString(msg)
 		return
 	}else {
-		time.Sleep(time.Millisecond*100)
+		time.Sleep(time.Millisecond*200)
 		if v, ok := httpmsg[id]; ok {
 			msg = v
 			delete(httpmsg, id)
