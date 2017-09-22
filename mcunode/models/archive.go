@@ -2,7 +2,6 @@ package models
 
 import (
 	_"github.com/astaxie/beego/orm"
-	_ "github.com/go-sql-driver/mysql" // import your used driver
 	_"time"
 )
 
