@@ -1,6 +1,6 @@
 #Ubuntu test ok,install upx，set ：
-PATH="$HOME/go1.9/go/bin:$HOME/bin:$HOME/.local/bin:$PATH"
-export GOPATH="$HOME/go"
+PATH="$HOME/go1.9/go/bin:$PATH"  #PATH for Go bin file
+export GOPATH="$HOME/go"         #GOPATH
 
 
 env CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -ldflags "-s -w" -o ./mcunode_darwin_amd64
