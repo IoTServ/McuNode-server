@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "mcunode/routers"
+	_ "github.com/IoTServ/McuNode-server/mcunode/routers"
 	"github.com/astaxie/beego"
 	"fmt"
 )

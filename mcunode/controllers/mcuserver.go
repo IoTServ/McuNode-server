@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/gorilla/websocket"
 
-	"mcunode/models"
+	"github.com/IoTServ/McuNode-server/mcunode/models"
 	"net"
 	"runtime"
 	"fmt"

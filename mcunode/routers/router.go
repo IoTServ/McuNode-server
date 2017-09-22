@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"mcunode/controllers"
+	"github.com/IoTServ/McuNode-server/mcunode/controllers"
 	"github.com/astaxie/beego"
 )
 
