@@ -1,0 +1,33 @@
+<title>互联网控制nodemcuLED</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/semantic-ui/2.2.11/semantic.min.css">
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/semantic-ui/2.2.11/semantic.min.js"></script>
+<h3>互联网控制NodeMcu的IO</h3>
+<div class="ui left floated compact segment">
+  GPIO0:<div class="ui fitted toggle checkbox" id="IO">
+    <input type="checkbox"  id="led0" onclick="led(0)">
+    <label></label>
+  </div>
+</div>
+<script>
+  function led(pin) {
+      if ($("#led"+pin).get(0).checked) {
+          console.log('checked'+pin);
+    $.ajax({url: "?pin=ON"+pin})
+  }else {
+          console.log('unchecked'+pin);
+          $.ajax({url: "?pin=OFF"+pin})
+      }
+  }
+  $(document).ready(
+      function () {
+          for (i=12;i>0;i--) {
+      $("#IO").after("<br>GPIO" + i + ":<div class=\"ui fitted toggle checkbox\">\n" +
+          "    <input type=\"checkbox\"  id=\"led" + i + "\" onclick=\"led(" + i + ")\">\n" +
+          "    <label></label>\n" +
+          "  </div>");
+            }
+      }
+  )
+</script>
