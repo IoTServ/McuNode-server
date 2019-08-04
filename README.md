@@ -1,4 +1,6 @@
-# McuNode-server 
+# Please use https://github.com/nat-cloud/android-explorer for remote control  
+# 当前项目已经封存，请使用 https://github.com/nat-cloud/android-explorer 来获得esp8266等的设备的远程访问能力   
+## McuNode-server 
 
 ### Free servers who use this program list ：
 *  http://eiot.club/
